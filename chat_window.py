@@ -25,10 +25,10 @@ def save_history():
 def get_news(topic="latest"):
     topic_lower = topic.lower().strip()
     if topic_lower in CATEGORIES:
-        url = f"https://newsapi.org/v2/top-headlines?language=en&pageSize=5&category={topic_lower}&apiKey={NEWS_API_KEY}"
+        url = f"https://newsapi.org/v2/top-headlines?language=en&pageSize=3&category={topic_lower}&apiKey={NEWS_API_KEY}"
     else:
         query = topic.replace(" ", "+")
-        url = f"https://newsapi.org/v2/top-headlines?language=en&pageSize=5&q={query}&apiKey={NEWS_API_KEY}"
+        url = f"https://newsapi.org/v2/top-headlines?language=en&pageSize=3&q={query}&apiKey={NEWS_API_KEY}"
 
     response = requests.get(url).json()
     if response.get("status") != "ok":
@@ -169,7 +169,7 @@ def send_message():
     append_chat(reply, sender="bot")
 
 # --------------------------
-# GUI LAYOUT
+# GUI LAYOUT (Reduced Width)
 # --------------------------
 root = tk.Tk()
 root.title("🧠 Smart News & Weather Chatbot")
