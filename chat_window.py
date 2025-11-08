@@ -169,39 +169,38 @@ def send_message():
     append_chat(reply, sender="bot")
 
 # --------------------------
-# GUI LAYOUT (Compact Version)
+# GUI LAYOUT
 # --------------------------
 root = tk.Tk()
 root.title("🧠 Smart News & Weather Chatbot")
-root.geometry("900x550")
+root.geometry("700x500")
 root.configure(bg="#f0f4f8")
 
 style = ttk.Style()
-style.configure("TNotebook.Tab", padding=[10, 6], font=("Segoe UI", 11, "bold"))
+style.configure("TNotebook.Tab", padding=[8, 5], font=("Segoe UI", 10, "bold"))
 style.configure("TButton", font=("Segoe UI", 10, "bold"), padding=6)
 style.configure("TFrame", background="#f0f4f8")
 
 notebook = ttk.Notebook(root)
-notebook.pack(padx=10, pady=10, fill='both', expand=True)
+notebook.pack(padx=8, pady=8, fill='both', expand=True)
 
 chat_frame = ttk.Frame(notebook)
 notebook.add(chat_frame, text="💬 Chat")
 
-# Reduced height here ↓↓↓
 chat_window = scrolledtext.ScrolledText(
-    chat_frame, wrap=tk.WORD, width=90, height=18,
+    chat_frame, wrap=tk.WORD, width=70, height=18,
     state='disabled', bg="#ffffff", font=("Segoe UI", 10)
 )
-chat_window.pack(padx=10, pady=10, fill='both', expand=True)
+chat_window.pack(padx=8, pady=8, fill='both', expand=True)
 chat_window.tag_config('user_text', foreground="#0066cc")
 chat_window.tag_config('bot_name', foreground="#009933", font=("Segoe UI", 10, "bold"))
 chat_window.tag_config('bot_text', foreground="#333333", font=("Segoe UI", 10))
 chat_window.tag_config('title', foreground="#0055aa", font=("Segoe UI", 11, "bold"))
 
 bottom_frame = ttk.Frame(chat_frame)
-bottom_frame.pack(fill='x', padx=10, pady=(0, 10))
+bottom_frame.pack(fill='x', padx=8, pady=(0, 8))
 
-entry = ttk.Entry(bottom_frame, width=80, font=("Segoe UI", 10))
+entry = ttk.Entry(bottom_frame, width=55, font=("Segoe UI", 10))
 entry.pack(side=tk.LEFT, padx=(0, 5))
 entry.bind("<Return>", lambda e: send_message())
 
@@ -211,9 +210,9 @@ send_button.pack(side=tk.LEFT)
 topic_frame = ttk.Frame(chat_frame)
 topic_frame.pack(pady=(3, 10))
 for topic in ["Technology", "Sports", "Health", "Business"]:
-    btn = ttk.Button(topic_frame, text=topic, width=14,
+    btn = ttk.Button(topic_frame, text=topic, width=12,
                      command=lambda t=topic.lower(): (entry.delete(0, tk.END), entry.insert(0, f"Show me {t} news"), send_message()))
-    btn.pack(side=tk.LEFT, padx=5)
+    btn.pack(side=tk.LEFT, padx=4)
 
 append_chat("👋 Hello! I can show you the latest news or weather. Try 'Technology news' or 'Weather in Delhi'.", sender="bot")
 root.mainloop()
